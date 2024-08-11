@@ -18,4 +18,9 @@ class Board (
     override fun hashCode(): Int {
         return javaClass.hashCode()
     }
+
+    fun update(board: Board) {
+        this.title = board.title
+        this.content = board.content
+    }
 }
