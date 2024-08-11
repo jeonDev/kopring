@@ -17,6 +17,7 @@ class SecurityConfig {
             .authorizeHttpRequests { authz ->
                 authz
                     .requestMatchers("/test/**").permitAll()
+                    .requestMatchers("/board/**").permitAll()
                     .anyRequest().authenticated()
             }
         return http.build()
