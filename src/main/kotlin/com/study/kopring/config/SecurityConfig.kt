@@ -23,8 +23,13 @@ class SecurityConfig {
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers(PathRequest.toH2Console()).permitAll()
-                    .requestMatchers("/test/**").permitAll()
-                    .requestMatchers("/board/**").permitAll()
+                    .requestMatchers(
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**",
+                        "/test/**",
+                        "/board/**"
+                        )
+                    .permitAll()
                     .anyRequest().authenticated()
             }
         return http.build()
