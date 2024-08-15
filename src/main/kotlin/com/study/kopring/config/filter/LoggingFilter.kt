@@ -16,5 +16,6 @@ class LoggingFilter : Filter{
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val req:HttpServletRequest = request as HttpServletRequest
         logger.info("url : {}" ,req.requestURL.toString())
+        chain?.doFilter(request, response)
     }
 }
