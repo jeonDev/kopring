@@ -1,5 +1,7 @@
 package com.study.kopring.board.entity
 
+import com.study.kopring.board.vo.request.PBoard
+import com.study.kopring.board.vo.response.RBoard
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -9,16 +11,31 @@ import jakarta.persistence.Table
 
 @Table(name = "BOARD")
 @Entity
-class Board {
+class Board (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOARD_SEQ")
-    var id:Long? = null
+    val id:Long? = null,
 
     @Column(name = "TITLE")
-    var title:String? = null
+    var title:String? = null,
 
     @Column(name = "CONTENT")
     var content:String? = null
+){
+
+    fun update(board: PBoard) :Board{
+        this.title = board.title
+        this.content = board.content
+        return this
+    }
+
+    fun toResponse() :RBoard{
+        return RBoard(
+            boardSeq = id,
+            title = title,
+            content = content
+        )
+    }
 
 }

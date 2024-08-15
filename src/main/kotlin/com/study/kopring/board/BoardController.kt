@@ -11,31 +11,31 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class BoardController constructor(private val boardService: BoardService){
+class BoardController constructor(private val boardServiceImpl: BoardService){
 
     @PostMapping("/board")
     fun create(@RequestBody board: PBoard): String {
-        boardService.set(board)
+        boardServiceImpl.set(board)
         return "ok"
     }
 
     @GetMapping("/board")
     fun list(): List<RBoard> {
-        return boardService.get();
+        return boardServiceImpl.get();
     }
 
     @GetMapping("/board/{boardSeq}")
-    fun list(@PathVariable("boardSeq") boardSeq:Long): List<RBoard> {
-        return boardService.get(boardSeq);
+    fun list(@PathVariable("boardSeq") boardSeq:Long): RBoard {
+        return boardServiceImpl.get(boardSeq);
     }
 
     @PutMapping("/board")
     fun update(@RequestBody board: PBoard) {
-        return boardService.update(board);
+        return boardServiceImpl.update(board);
     }
 
     @DeleteMapping("/board")
     fun delete(@RequestBody board: PBoard) {
-        return boardService.delete(board)
+        return boardServiceImpl.delete(board)
     }
 }

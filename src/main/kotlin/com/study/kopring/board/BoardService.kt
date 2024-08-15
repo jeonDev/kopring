@@ -7,7 +7,7 @@ interface BoardService {
 
     fun set(board: PBoard)
     fun get():List<RBoard>
-    fun get(boardSeq: Long):List<RBoard>
+    fun get(boardSeq: Long):RBoard
     fun update(board: PBoard)
     fun delete(board: PBoard)
 

@@ -1,5 +1,7 @@
 package com.study.kopring.board.vo.request
 
+import com.study.kopring.board.entity.Board
+
 class PBoard (
     var boardSeq: Long,
     var title: String,
@@ -7,8 +9,10 @@ class PBoard (
 ) {
 
 
-    fun update(board: PBoard) {
-        this.title = board.title
-        this.content = board.content
+    fun toEntity() :Board {
+        return Board(
+            title = title,
+            content = content
+        );
     }
 }
