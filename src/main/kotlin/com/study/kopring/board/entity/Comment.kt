@@ -22,7 +22,8 @@ class Comment (
     fun toResponse() : RComment {
         return RComment(
             commentSeq = id,
-            content = content)
+            content = content
+        )
     }
 
 }

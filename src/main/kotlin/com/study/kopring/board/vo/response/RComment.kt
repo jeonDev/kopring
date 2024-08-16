@@ -1,7 +1,7 @@
 package com.study.kopring.board.vo.response
 
 class RComment (
-    commentSeq:Long?,
-    content:String?
+    val commentSeq:Long? = null,
+    val content:String? = null
 ){
 }

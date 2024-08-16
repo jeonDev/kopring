@@ -16,7 +16,7 @@ class CommentServiceImpl (
 
     override fun get(): List<RComment> {
         return commentRepository.findAll().stream()
-            .map( { it.toResponse() } )
+            .map { it.toResponse() }
             .toList()
     }
 
