@@ -1,4 +1,7 @@
 package com.study.kopring.board.repository
 
-interface CommentRepository {
+import com.study.kopring.board.entity.Comment
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface CommentRepository:JpaRepository<Comment, Long> {
 }
