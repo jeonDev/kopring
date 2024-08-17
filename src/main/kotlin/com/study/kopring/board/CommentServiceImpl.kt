@@ -7,6 +7,7 @@ import com.study.kopring.board.repository.CommentRepository
 import com.study.kopring.board.vo.request.PComment
 import com.study.kopring.board.vo.response.RComment
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CommentServiceImpl (
@@ -14,12 +15,14 @@ class CommentServiceImpl (
     val boardRepository: BoardRepository
 ) :CommentService{
 
+    @Transactional(readOnly = true)
     override fun get(): List<RComment> {
         return commentRepository.findAll().stream()
             .map { it.toResponse() }
             .toList()
     }
 
+    @Transactional
     override fun add(pComment: PComment): RComment {
         val board:Board = boardRepository.findById(pComment.boardSeq)
             .orElseThrow { IllegalArgumentException("No Entity") }
