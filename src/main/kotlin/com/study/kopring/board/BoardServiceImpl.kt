@@ -1,5 +1,6 @@
 package com.study.kopring.board
 
+import com.study.kopring.board.entity.Board
 import com.study.kopring.board.repository.BoardRepository
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
@@ -38,8 +39,9 @@ class BoardServiceImpl (
 
     @Transactional
     override fun delete(board: PBoard) {
-        val entity = boardRepository.findById(board.boardSeq)
+        val entity:Board = boardRepository.findById(board.boardSeq)
             .orElseThrow()
-        boardRepository.delete(entity)
+        entity.delete()
+        boardRepository.save(entity)
     }
 }

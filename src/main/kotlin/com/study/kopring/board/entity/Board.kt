@@ -21,7 +21,10 @@ class Board (
     var title:String? = null,
 
     @Column(name = "CONTENT")
-    var content:String? = null
+    var content:String? = null,
+
+    @Column(name = "USE_YN")
+    var useYn:String = "Y"
 ){
 
     fun update(board: PBoard) :Board{
@@ -30,11 +33,17 @@ class Board (
         return this
     }
 
+    fun delete(): Board {
+        this.useYn = "N"
+        return this
+    }
+
     fun toResponse() :RBoard{
         return RBoard(
             boardSeq = id,
             title = title,
-            content = content
+            content = content,
+            useYn = useYn
         )
     }
 
