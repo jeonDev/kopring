@@ -1,5 +1,6 @@
-package com.study.kopring.board
+package com.study.kopring.endpoint.board
 
+import com.study.kopring.board.BoardService
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
 import org.springframework.web.bind.annotation.DeleteMapping

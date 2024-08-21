@@ -16,8 +16,8 @@ class CommentServiceImpl (
 ) :CommentService{
 
     @Transactional(readOnly = true)
-    override fun get(): List<RComment> {
-        return commentRepository.findAll().stream()
+    override fun get(boardSeq: Long): List<RComment> {
+        return commentRepository.findByBoardId(boardSeq).stream()
             .map { it.toResponse() }
             .toList()
     }

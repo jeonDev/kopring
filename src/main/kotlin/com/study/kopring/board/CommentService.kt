@@ -5,6 +5,6 @@ import com.study.kopring.board.vo.response.RComment
 
 interface CommentService {
 
-    fun get(): List<RComment>
+    fun get(boardSeq: Long): List<RComment>
     fun add(pComment: PComment): RComment
 }
