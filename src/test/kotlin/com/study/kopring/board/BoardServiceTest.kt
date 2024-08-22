@@ -10,6 +10,10 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageImpl
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 import java.util.*
 
 @ExtendWith(MockitoExtension::class)
@@ -38,12 +42,14 @@ class BoardServiceTest {
     @Test
     @DisplayName("게시글 조회")
     fun 게시글_조회() {
-        `when`(boardRepository.findByUseYn(anyString()))
-            .thenReturn(listOf(Board()))
 
-        val result = boardService.get()
+        val page: Page<Board> = PageImpl(listOf(Board()))
+        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java), anyString()))
+            .thenReturn(page)
 
-        assertEquals(result.size, 1)
+        val result = boardService.get(PageRequest.of(0, 10))
+
+        assertEquals(result.totalCount, 1)
     }
 
     @Test

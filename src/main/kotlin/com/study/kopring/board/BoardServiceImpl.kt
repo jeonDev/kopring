@@ -4,6 +4,10 @@ import com.study.kopring.board.entity.Board
 import com.study.kopring.board.repository.BoardRepository
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
+import com.study.kopring.common.vo.PageResponse
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -11,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 class BoardServiceImpl (
     val boardRepository: BoardRepository
 ): BoardService {
+    val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Transactional
     override fun set(board: PBoard) {
@@ -18,10 +23,14 @@ class BoardServiceImpl (
     }
 
     @Transactional(readOnly = true)
-    override fun get(): List<RBoard> {
-        return boardRepository.findByUseYn("Y").stream()
-            .map { it.toResponse() }
-            .toList()
+    override fun get(pageable: Pageable): PageResponse<RBoard> {
+        val result = boardRepository.findByUseYnOrderByIdDesc(pageable, "Y");
+        return PageResponse(
+            totalCount = result.totalPages,
+            list       = result.content.stream()
+                .map { it.toResponse() }
+                .toList()
+        )
     }
 
     @Transactional(readOnly = true)
