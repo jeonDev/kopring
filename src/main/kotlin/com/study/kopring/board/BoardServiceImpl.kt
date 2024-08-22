@@ -19,7 +19,9 @@ class BoardServiceImpl (
 
     @Transactional(readOnly = true)
     override fun get(): List<RBoard> {
-        return boardRepository.findAll().stream().map { it.toResponse() }.toList()
+        return boardRepository.findByUseYn("Y").stream()
+            .map { it.toResponse() }
+            .toList()
     }
 
     @Transactional(readOnly = true)
