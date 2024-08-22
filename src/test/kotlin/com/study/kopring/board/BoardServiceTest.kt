@@ -38,7 +38,7 @@ class BoardServiceTest {
     @Test
     @DisplayName("게시글 조회")
     fun 게시글_조회() {
-        `when`(boardRepository.findAll())
+        `when`(boardRepository.findByUseYn(anyString()))
             .thenReturn(listOf(Board()))
 
         val result = boardService.get()
