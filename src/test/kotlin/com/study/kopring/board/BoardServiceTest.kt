@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtendWith
+import org.mockito.ArgumentMatchers
+import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.Page
@@ -44,10 +46,11 @@ class BoardServiceTest {
     fun 게시글_조회() {
 
         val page: Page<Board> = PageImpl(listOf(Board()))
-        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java), anyString()))
+        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java)!!, anyString()))
             .thenReturn(page)
 
-        val result = boardService.get(PageRequest.of(0, 10))
+        val pageable:Pageable = PageRequest.of(0, 10)
+        val result = boardService.get(pageable)
 
         assertEquals(result.totalCount, 1)
     }

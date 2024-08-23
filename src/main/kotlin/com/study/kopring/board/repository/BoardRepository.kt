@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface BoardRepository : JpaRepository<Board, Long> {
-    fun findByUseYnOrderByIdDesc(pageable: Pageable, useYn: String): Page<Board>
+    fun findByUseYnOrderByIdDesc(pageable: Pageable?, useYn: String): Page<Board>
 }
