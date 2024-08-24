@@ -12,7 +12,7 @@ class Member (
     @Column(name = "MEMBER_SEQ")
     val id: Long? = null,
 
-    @Column(name = "ID")
+    @Column(name = "ID", unique = true)
     var memberId: String = "",
 
     @Column(name = "PASSWORD")
