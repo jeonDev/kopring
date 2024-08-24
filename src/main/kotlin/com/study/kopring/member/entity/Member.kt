@@ -1,5 +1,6 @@
 package com.study.kopring.member.entity
 
+import com.study.kopring.member.vo.response.RMember
 import jakarta.persistence.*
 
 @Entity
@@ -19,4 +20,10 @@ class Member (
     @Column(name = "NAME")
     var name: String = ""
 ){
+
+    fun toResponse() : RMember {
+        return RMember(
+            name = name
+        )
+    }
 }
