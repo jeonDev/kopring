@@ -1,7 +1,9 @@
 package com.study.kopring.board
 
 import com.study.kopring.board.entity.Board
+import com.study.kopring.board.entity.Team
 import com.study.kopring.board.repository.BoardRepository
+import com.study.kopring.board.repository.TeamRepository
 import com.study.kopring.board.vo.request.PBoard
 import org.junit.jupiter.api.Test
 
@@ -23,9 +25,10 @@ import java.util.*
 class BoardServiceTest {
 
     private val boardRepository: BoardRepository = mock()
+    private val teamRepository:TeamRepository = mock()
 
     private val boardService: BoardService =
-        BoardServiceImpl(boardRepository)
+        BoardServiceImpl(boardRepository, teamRepository)
 
     @Test
     @DisplayName("게시글 저장")
@@ -33,8 +36,11 @@ class BoardServiceTest {
         var pBoard:PBoard = PBoard(
             boardSeq = 0L,
             title = "테스트",
-            content = "테스트"
+            content = "테스트",
+            teamSeq = 1L
         )
+        `when`(teamRepository.findById(anyLong()))
+            .thenReturn(Optional.of(Team()))
 
         assertDoesNotThrow({
             boardService.set(pBoard)
@@ -46,7 +52,7 @@ class BoardServiceTest {
     fun 게시글_조회() {
 
         val page: Page<Board> = PageImpl(listOf(Board()))
-        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java)!!, anyString()))
+        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java), anyString()))
             .thenReturn(page)
 
         val pageable:Pageable = PageRequest.of(0, 10)
@@ -77,7 +83,8 @@ class BoardServiceTest {
         var pBoard:PBoard = PBoard(
             boardSeq = 1L,
             title = "테스트",
-            content = "테스트"
+            content = "테스트",
+            teamSeq = 1L
         )
 
         `when`(boardRepository.findById(anyLong()))
@@ -94,7 +101,8 @@ class BoardServiceTest {
         var pBoard:PBoard = PBoard(
             boardSeq = 1L,
             title = "테스트",
-            content = "테스트"
+            content = "테스트",
+            teamSeq = 0L
         )
 
         `when`(boardRepository.findById(anyLong()))
