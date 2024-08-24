@@ -15,8 +15,8 @@ class MemberServiceImpl(
         val entity:Member = pMemberAdd.toEntity(pMemberAdd.getPassword())
         memberRepository.save(entity)
         return RMemberAdd(
-            id = "",
-            name = ""
+            id = entity.memberId,
+            name = entity.name
         )
     }
 }

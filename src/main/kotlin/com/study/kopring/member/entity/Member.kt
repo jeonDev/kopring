@@ -10,15 +10,15 @@ class Member (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEMBER_SEQ")
-    private val id: Long? = null,
+    val id: Long? = null,
 
     @Column(name = "ID")
-    private var memberId: String? = null,
+    var memberId: String = "",
 
     @Column(name = "PASSWORD")
-    private var password: String? = null,
+    var password: String = "",
 
     @Column(name = "NAME")
-    private var name: String? = null
+    var name: String = ""
 ){
 }
