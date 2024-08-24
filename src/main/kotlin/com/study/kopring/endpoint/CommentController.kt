@@ -1,4 +1,4 @@
-package com.study.kopring.endpoint.board
+package com.study.kopring.endpoint
 
 import com.study.kopring.board.CommentService
 import com.study.kopring.board.vo.request.PComment

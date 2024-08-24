@@ -1,4 +1,4 @@
-package com.study.kopring.endpoint.board
+package com.study.kopring.endpoint
 
 import com.study.kopring.member.MemberService
 import com.study.kopring.member.vo.request.PMemberAdd
