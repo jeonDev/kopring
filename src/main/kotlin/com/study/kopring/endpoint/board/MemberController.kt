@@ -2,6 +2,7 @@ package com.study.kopring.endpoint.board
 
 import com.study.kopring.member.MemberService
 import com.study.kopring.member.vo.request.PMemberAdd
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -12,7 +13,8 @@ class MemberController (
 ){
 
     @PostMapping("/v1/member")
-    fun add(@RequestBody pMemberAdd: PMemberAdd) {
+    fun add(@RequestBody pMemberAdd: PMemberAdd): ResponseEntity<Void> {
         memberService.add(pMemberAdd)
+        return ResponseEntity.ok().build()
     }
 }

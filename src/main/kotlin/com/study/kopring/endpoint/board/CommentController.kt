@@ -3,6 +3,7 @@ package com.study.kopring.endpoint.board
 import com.study.kopring.board.CommentService
 import com.study.kopring.board.vo.request.PComment
 import com.study.kopring.board.vo.response.RComment
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -15,12 +16,14 @@ class CommentController (
 ){
 
     @GetMapping("/v1/comment")
-    fun get(@RequestParam("boardSeq") boardSeq:Long) : List<RComment> {
-        return commentService.get(boardSeq)
+    fun get(@RequestParam("boardSeq") boardSeq:Long): ResponseEntity<List<RComment>> {
+        val result = commentService.get(boardSeq)
+        return ResponseEntity.ok().body(result)
     }
 
     @PostMapping("/v1/comment")
-    fun add(@RequestBody pComment: PComment) : RComment {
-        return commentService.add(pComment)
+    fun add(@RequestBody pComment: PComment) : ResponseEntity<RComment> {
+        val result = commentService.add(pComment)
+        return ResponseEntity.ok().body(result)
     }
 }
