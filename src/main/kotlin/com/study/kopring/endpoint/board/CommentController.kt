@@ -14,12 +14,12 @@ class CommentController (
     val commentService: CommentService
 ){
 
-    @GetMapping("/comment")
+    @GetMapping("/v1/comment")
     fun get(@RequestParam("boardSeq") boardSeq:Long) : List<RComment> {
         return commentService.get(boardSeq)
     }
 
-    @PostMapping("/comment")
+    @PostMapping("/v1/comment")
     fun add(@RequestBody pComment: PComment) : RComment {
         return commentService.add(pComment)
     }
