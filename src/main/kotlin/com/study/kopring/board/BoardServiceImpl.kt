@@ -1,7 +1,9 @@
 package com.study.kopring.board
 
 import com.study.kopring.board.entity.Board
+import com.study.kopring.board.entity.Team
 import com.study.kopring.board.repository.BoardRepository
+import com.study.kopring.board.repository.TeamRepository
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
 import com.study.kopring.common.vo.PageResponse
@@ -13,13 +15,16 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class BoardServiceImpl (
-    val boardRepository: BoardRepository
+    val boardRepository: BoardRepository,
+    val teamRepository: TeamRepository
 ): BoardService {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Transactional
     override fun set(board: PBoard) {
-        boardRepository.save(board.toEntity())
+        val team:Team = teamRepository.findById(board.teamSeq)
+            .orElseThrow({ IllegalArgumentException("No Entity") })
+        boardRepository.save(board.toEntity(team))
     }
 
     @Transactional(readOnly = true)

@@ -2,12 +2,7 @@ package com.study.kopring.board.entity
 
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Table(name = "BOARD")
 @Entity
@@ -16,6 +11,10 @@ class Board (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOARD_SEQ")
     val id:Long? = null,
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_SEQ")
+    var team: Team? = null,
 
     @Column(name = "TITLE")
     var title:String? = null,

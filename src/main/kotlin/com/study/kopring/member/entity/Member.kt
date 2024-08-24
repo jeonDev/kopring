@@ -1,9 +1,7 @@
 package com.study.kopring.member.entity
 
 import jakarta.persistence.*
-import lombok.Getter
 
-@Getter
 @Entity
 @Table(name = "MEMBER")
 class Member (
