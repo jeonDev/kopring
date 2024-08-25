@@ -5,7 +5,12 @@ import com.study.kopring.member.entity.Member
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "TEAM_MEMBER")
+@Table(
+    name = "TEAM_MEMBER",
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["MEMBER_SEQ", "TEAM_SEQ"])
+    ]
+)
 class TeamMember(
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
