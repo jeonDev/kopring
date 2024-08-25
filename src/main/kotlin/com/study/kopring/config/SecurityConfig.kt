@@ -33,7 +33,7 @@ class SecurityConfig {
                     .requestMatchers(
                         "/swagger-ui/**",
                         "/v3/api-docs/**",
-                        "/v1/**",
+                        "/pms/v1/**",
                         )
                     .permitAll()
                     .anyRequest().authenticated()
