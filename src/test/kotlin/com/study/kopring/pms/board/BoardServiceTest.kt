@@ -5,6 +5,7 @@ import com.study.kopring.pms.board.entity.Team
 import com.study.kopring.pms.board.repository.BoardRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PBoard
+import com.study.kopring.pms.board.vo.type.BoardType
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -34,7 +35,7 @@ class BoardServiceTest {
         Mockito.any<T>()
         return null as T
     }
-    
+
     @Test
     @DisplayName("게시글 저장")
     fun 게시글_저장() {
@@ -42,7 +43,8 @@ class BoardServiceTest {
             boardSeq = 0L,
             title = "테스트",
             content = "테스트",
-            teamSeq = 1L
+            teamSeq = 1L,
+            boardType = BoardType.WIKI
         )
         `when`(teamRepository.findById(anyLong()))
             .thenReturn(Optional.of(Team()))
@@ -71,7 +73,8 @@ class BoardServiceTest {
     fun 게시글_단건_조회() {
         val board = Board(
             title = "aaa",
-            content = "bbb"
+            content = "bbb",
+            boardType = BoardType.WIKI
         )
         `when`(boardRepository.findById(anyLong()))
             .thenReturn(Optional.of(board))
@@ -89,7 +92,8 @@ class BoardServiceTest {
             boardSeq = 1L,
             title = "테스트",
             content = "테스트",
-            teamSeq = 1L
+            teamSeq = 1L,
+            boardType = BoardType.WIKI
         )
 
         `when`(boardRepository.findById(anyLong()))
@@ -107,7 +111,8 @@ class BoardServiceTest {
             boardSeq = 1L,
             title = "테스트",
             content = "테스트",
-            teamSeq = 0L
+            teamSeq = 0L,
+            boardType = BoardType.WIKI
         )
 
         `when`(boardRepository.findById(anyLong()))

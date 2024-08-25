@@ -2,12 +2,14 @@ package com.study.kopring.pms.board.vo.request
 
 import com.study.kopring.pms.board.entity.Board
 import com.study.kopring.pms.board.entity.Team
+import com.study.kopring.pms.board.vo.type.BoardType
 
 class PBoard (
     var boardSeq: Long,
     var title: String,
     var content: String,
-    var teamSeq: Long
+    var teamSeq: Long,
+    var boardType: BoardType
 ) {
 
 
@@ -15,7 +17,8 @@ class PBoard (
         return Board(
             title = title,
             content = content,
-            team = team
+            team = team,
+            boardType = boardType
         );
     }
 }

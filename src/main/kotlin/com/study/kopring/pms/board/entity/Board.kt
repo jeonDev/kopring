@@ -2,6 +2,7 @@ package com.study.kopring.pms.board.entity
 
 import com.study.kopring.pms.board.vo.request.PBoard
 import com.study.kopring.pms.board.vo.response.RBoard
+import com.study.kopring.pms.board.vo.type.BoardType
 import jakarta.persistence.*
 
 @Table(name = "BOARD")
@@ -23,7 +24,11 @@ class Board (
     var content:String? = null,
 
     @Column(name = "USE_YN")
-    var useYn:String = "Y"
+    var useYn:String = "Y",
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "BOARD_TYPE")
+    var boardType: BoardType? = null
 ){
 
     fun update(board: PBoard) :Board{
@@ -42,7 +47,8 @@ class Board (
             boardSeq = id,
             title = title,
             content = content,
-            useYn = useYn
+            useYn = useYn,
+            boardType = boardType
         )
     }
 
