@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.ArgumentMatchers.any
+import org.mockito.Mockito
 import org.mockito.Mockito.*
 import org.mockito.junit.jupiter.MockitoExtension
 import org.springframework.data.domain.Page
@@ -29,6 +30,11 @@ class BoardServiceTest {
     private val boardService: BoardService =
         BoardServiceImpl(boardRepository, teamRepository)
 
+    private fun <T> any() : T{
+        Mockito.any<T>()
+        return null as T
+    }
+    
     @Test
     @DisplayName("게시글 저장")
     fun 게시글_저장() {
@@ -51,7 +57,7 @@ class BoardServiceTest {
     fun 게시글_조회() {
 
         val page: Page<Board> = PageImpl(listOf(Board()))
-        `when`(boardRepository.findByUseYnOrderByIdDesc(any(Pageable::class.java), anyString()))
+        `when`(boardRepository.findByUseYnOrderByIdDesc(any(), anyString()))
             .thenReturn(page)
 
         val pageable:Pageable = PageRequest.of(0, 10)
