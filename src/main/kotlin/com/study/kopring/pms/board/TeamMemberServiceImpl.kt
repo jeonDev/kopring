@@ -9,6 +9,7 @@ import com.study.kopring.pms.board.vo.response.RTeamMember
 import com.study.kopring.pms.member.repository.MemberRepository
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class TeamMemberServiceImpl(
@@ -17,6 +18,7 @@ class TeamMemberServiceImpl(
     private val memberRepository: MemberRepository
 ):TeamMemberService {
 
+    @Transactional
     override fun add(pTeamMember: PTeamMember) {
         val team = teamRepository.findById(pTeamMember.teamSeq)
             .orElseThrow {
@@ -41,6 +43,7 @@ class TeamMemberServiceImpl(
         ))
     }
 
+    @Transactional(readOnly = true)
     override fun get(pageable: Pageable, teamSeq:Long): PageResponse<RTeamMember> {
         val result = teamMemberRepository.findByTeamMember(teamSeq, pageable)
         return PageResponse(

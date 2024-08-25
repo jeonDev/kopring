@@ -6,6 +6,7 @@ import com.study.kopring.pms.member.vo.request.PMemberAdd
 import com.study.kopring.pms.member.vo.response.RMemberAdd
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class MemberServiceImpl(
@@ -13,6 +14,7 @@ class MemberServiceImpl(
     private val encoder:PasswordEncoder
 ): MemberService {
 
+    @Transactional
     override fun add(pMemberAdd: PMemberAdd): RMemberAdd {
         val entity: Member = memberRepository.save(
             pMemberAdd.toEntity(
