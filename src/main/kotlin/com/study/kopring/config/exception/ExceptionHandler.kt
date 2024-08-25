@@ -15,7 +15,7 @@ class ExceptionHandler {
     protected fun serviceHandleException(e:ServiceException): ResponseEntity<ErrorResponse> {
         log.error("serviceHandleException Log : {}", e.message, e)
         return ResponseEntity
-            .status(HttpStatus.OK)
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ErrorResponse(
                 errorCode = e.errorCode,
                 errorMessage = e.errorMessage
@@ -26,7 +26,7 @@ class ExceptionHandler {
     protected fun dataIntegrityViolationHandleException(e: DataIntegrityViolationException) : ResponseEntity<ErrorResponse> {
         log.error("dataIntegrityViolationHandleException Log : {}", e.message, e)
         return ResponseEntity
-            .status(HttpStatus.OK)
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ErrorResponse(
                 errorMessage = "Data Error."
             ))
@@ -36,7 +36,7 @@ class ExceptionHandler {
     protected fun handleException(e: Exception) : ResponseEntity<ErrorResponse> {
         log.error("Exception Log : {}", e.message, e)
         return ResponseEntity
-            .status(HttpStatus.OK)
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(ErrorResponse())
     }
 
