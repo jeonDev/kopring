@@ -7,6 +7,7 @@ import com.study.kopring.board.repository.TeamRepository
 import com.study.kopring.board.vo.request.PBoard
 import com.study.kopring.board.vo.response.RBoard
 import com.study.kopring.common.vo.PageResponse
+import com.study.kopring.config.exception.ServiceException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Pageable
@@ -23,7 +24,11 @@ class BoardServiceImpl (
     @Transactional
     override fun set(board: PBoard) {
         val team:Team = teamRepository.findById(board.teamSeq)
-            .orElseThrow({ IllegalArgumentException("No Entity") })
+            .orElseThrow {
+                ServiceException(
+                    errorMessage = "No Entity"
+                )
+            }
         boardRepository.save(board.toEntity(team))
     }
 

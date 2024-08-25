@@ -6,6 +6,7 @@ import com.study.kopring.board.repository.BoardRepository
 import com.study.kopring.board.repository.CommentRepository
 import com.study.kopring.board.vo.request.PComment
 import com.study.kopring.board.vo.response.RComment
+import com.study.kopring.config.exception.ServiceException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -25,7 +26,11 @@ class CommentServiceImpl (
     @Transactional
     override fun add(pComment: PComment): RComment {
         val board:Board = boardRepository.findById(pComment.boardSeq)
-            .orElseThrow { IllegalArgumentException("No Entity") }
+            .orElseThrow {
+                ServiceException(
+                    errorMessage = "No Entity"
+                )
+            }
 
         val comment:Comment = Comment(
             board = board,
