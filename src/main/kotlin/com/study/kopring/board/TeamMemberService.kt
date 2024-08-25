@@ -8,5 +8,5 @@ import org.springframework.data.domain.Pageable
 interface TeamMemberService {
 
     fun add(pTeamMember: PTeamMember)
-    fun get(pageable: Pageable):PageResponse<RTeamMember>
+    fun get(pageable: Pageable, teamSeq: Long):PageResponse<RTeamMember>
 }

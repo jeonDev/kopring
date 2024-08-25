@@ -37,11 +37,12 @@ class TeamController(
         return ResponseEntity.ok().build()
     }
 
-    @GetMapping("/v1/teamMember")
+    @GetMapping("/v1/teamMember/{teamSeq}")
     fun teamMemberGet(@RequestParam("size", defaultValue = "10") size:Int,
-                      @RequestParam("page", defaultValue = "0") page:Int
+                      @RequestParam("page", defaultValue = "0") page:Int,
+                      @PathVariable("teamSeq") teamSeq:Long
     ):ResponseEntity<PageResponse<RTeamMember>> {
-        val result:PageResponse<RTeamMember> = teamMemberService.get(PageRequest.of(page, size))
+        val result:PageResponse<RTeamMember> = teamMemberService.get(PageRequest.of(page, size), teamSeq)
         return ResponseEntity.ok(result)
     }
 }

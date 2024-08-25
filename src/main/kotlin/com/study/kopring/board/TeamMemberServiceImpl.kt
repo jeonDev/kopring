@@ -29,8 +29,8 @@ class TeamMemberServiceImpl(
         ))
     }
 
-    override fun get(pageable: Pageable): PageResponse<RTeamMember> {
-        val result = teamMemberRepository.findByTeamMember(pageable)
+    override fun get(pageable: Pageable, teamSeq:Long): PageResponse<RTeamMember> {
+        val result = teamMemberRepository.findByTeamMember(teamSeq, pageable)
         return PageResponse(
             totalCount = result.totalPages,
             list = result.content.stream()
