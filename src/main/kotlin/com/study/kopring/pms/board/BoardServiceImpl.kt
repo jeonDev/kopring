@@ -8,6 +8,7 @@ import com.study.kopring.pms.board.repository.BoardRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PBoard
 import com.study.kopring.pms.board.vo.response.RBoard
+import com.study.kopring.pms.board.vo.type.BoardType
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.data.domain.Pageable
@@ -17,7 +18,8 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class BoardServiceImpl (
     val boardRepository: BoardRepository,
-    val teamRepository: TeamRepository
+    val teamRepository: TeamRepository,
+    val githubService: GithubService
 ): BoardService {
     val logger: Logger = LoggerFactory.getLogger(this::class.java)
 
@@ -45,8 +47,14 @@ class BoardServiceImpl (
 
     @Transactional(readOnly = true)
     override fun get(boardSeq: Long): RBoard {
-        return boardRepository.findById(boardSeq)
+        val result = boardRepository.findById(boardSeq)
             .orElseThrow()
+
+        if (result.boardType == BoardType.GITHUB_COMMIT) {
+            githubService.getApiCall(result.refValue!!)
+        }
+
+        return result
             .toResponse()
     }
 

@@ -27,9 +27,10 @@ class BoardServiceTest {
 
     private val boardRepository: BoardRepository = mock()
     private val teamRepository: TeamRepository = mock()
+    private val githubService: GithubService = mock()
 
     private val boardService: BoardService =
-        BoardServiceImpl(boardRepository, teamRepository)
+        BoardServiceImpl(boardRepository, teamRepository, githubService)
 
     private fun <T> any() : T{
         Mockito.any<T>()
@@ -44,7 +45,8 @@ class BoardServiceTest {
             title = "테스트",
             content = "테스트",
             teamSeq = 1L,
-            boardType = BoardType.WIKI
+            boardType = BoardType.WIKI,
+            githubUri = null
         )
         `when`(teamRepository.findById(anyLong()))
             .thenReturn(Optional.of(Team()))
@@ -93,7 +95,8 @@ class BoardServiceTest {
             title = "테스트",
             content = "테스트",
             teamSeq = 1L,
-            boardType = BoardType.WIKI
+            boardType = BoardType.WIKI,
+            githubUri = null
         )
 
         `when`(boardRepository.findById(anyLong()))
@@ -112,7 +115,8 @@ class BoardServiceTest {
             title = "테스트",
             content = "테스트",
             teamSeq = 0L,
-            boardType = BoardType.WIKI
+            boardType = BoardType.WIKI,
+            githubUri = null
         )
 
         `when`(boardRepository.findById(anyLong()))

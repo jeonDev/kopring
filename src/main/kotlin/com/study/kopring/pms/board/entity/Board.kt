@@ -28,7 +28,10 @@ class Board (
 
     @Enumerated(EnumType.STRING)
     @Column(name = "BOARD_TYPE")
-    var boardType: BoardType? = null
+    var boardType: BoardType? = null,
+
+    @Column(name = "REF_VALUE")
+    var refValue: String? = null
 ){
 
     fun update(board: PBoard) :Board{
