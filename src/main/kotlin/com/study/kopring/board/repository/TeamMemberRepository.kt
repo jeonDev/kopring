@@ -1,13 +1,18 @@
 package com.study.kopring.board.repository
 
+import com.study.kopring.board.entity.Team
 import com.study.kopring.board.entity.TeamMember
+import com.study.kopring.member.entity.Member
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
+import java.util.Optional
 
 interface TeamMemberRepository: JpaRepository<TeamMember, Long> {
+
+    fun findByTeamAndMember(team: Team, member: Member): Optional<TeamMember>
 
     @Query(
         """
