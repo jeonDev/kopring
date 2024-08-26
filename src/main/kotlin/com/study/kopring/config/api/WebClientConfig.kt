@@ -26,14 +26,14 @@ class WebClientConfig {
 
     private fun requestFilter() :ExchangeFilterFunction {
         return ExchangeFilterFunction.ofRequestProcessor {request: ClientRequest ->
-            log.debug("Request ${request.method()} ${request.url()} ${request.headers()}")
+            log.info("Request ${request.method()} ${request.url()} ${request.headers()}")
             Mono.just(request)
         }
     }
 
     private fun responseFilter() :ExchangeFilterFunction {
         return ExchangeFilterFunction.ofResponseProcessor() {response: ClientResponse ->
-            log.debug("Response ${response.statusCode()}")
+            log.info("Response ${response.statusCode()}")
             Mono.just(response)
         }
     }
