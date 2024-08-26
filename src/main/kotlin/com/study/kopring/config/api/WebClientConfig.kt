@@ -18,22 +18,23 @@ class WebClientConfig {
     fun githubWebClient(@Value("\${api.github-url}") githubUrl:String ):WebClient {
         return WebClient.builder()
             .baseUrl(githubUrl)
-            .filters{it ->
+            .filters{
                 it.add(requestFilter())
+                it.add(responseFilter())
             }
             .build()
     }
 
     private fun requestFilter() :ExchangeFilterFunction {
         return ExchangeFilterFunction.ofRequestProcessor {request: ClientRequest ->
-            log.info("Request ${request.method()} ${request.url()} ${request.headers()}")
+            log.info("Request [${request.logPrefix()}] ${request.method()} ${request.url()} ${request.headers()}")
             Mono.just(request)
         }
     }
 
     private fun responseFilter() :ExchangeFilterFunction {
         return ExchangeFilterFunction.ofResponseProcessor() {response: ClientResponse ->
-            log.info("Response ${response.statusCode()}")
+            log.info("Response [${response.logPrefix()}] ${response.statusCode()}")
             Mono.just(response)
         }
     }

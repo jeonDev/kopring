@@ -10,16 +10,15 @@ class GithubServiceImpl(
 ):GithubService {
     private val log = LoggerFactory.getLogger(this::class.java)
 
-    // //curl -H "Accept: application/vnd.github+json"   https://api.github.com/repos/jeonDev/kopring/commits/main/status
-    override fun getApiCall(uri:String) {
-        val response = githubWebClient.get()
+    override fun <O> getApiCall(uri: String, resClass:Class<O>): O{
+        val response: O? = githubWebClient.get()
             .uri(uri)
             .headers { h ->
                 h.add("Accept", "application/vnd.github+json")
             }
             .retrieve()
-            .toEntity(String::class.java)
+            .bodyToMono(resClass)
             .block()
-        log.info(response.toString())
+        return response!!
     }
 }

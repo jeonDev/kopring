@@ -1,5 +1,5 @@
 package com.study.kopring.pms.board
 
 interface GithubService {
-    fun getApiCall(uri:String)
+    fun <O> getApiCall(uri:String, resClass:Class<O>): O
 }

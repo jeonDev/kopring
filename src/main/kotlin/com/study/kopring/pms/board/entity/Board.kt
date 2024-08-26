@@ -1,6 +1,7 @@
 package com.study.kopring.pms.board.entity
 
 import com.study.kopring.pms.board.vo.request.PBoard
+import com.study.kopring.pms.board.vo.response.GithubCommitHistory
 import com.study.kopring.pms.board.vo.response.RBoard
 import com.study.kopring.pms.board.vo.type.BoardType
 import jakarta.persistence.*
@@ -52,6 +53,17 @@ class Board (
             content = content,
             useYn = useYn,
             boardType = boardType
+        )
+    }
+
+    fun toResponse(githubCommitHistory: GithubCommitHistory) :RBoard{
+        return RBoard(
+            boardSeq = id,
+            title = title,
+            content = content,
+            useYn = useYn,
+            boardType = boardType,
+            githubCommitHistory = githubCommitHistory
         )
     }
 

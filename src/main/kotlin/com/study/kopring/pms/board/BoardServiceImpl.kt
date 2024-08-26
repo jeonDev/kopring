@@ -7,6 +7,7 @@ import com.study.kopring.pms.board.entity.Team
 import com.study.kopring.pms.board.repository.BoardRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PBoard
+import com.study.kopring.pms.board.vo.response.GithubCommitHistory
 import com.study.kopring.pms.board.vo.response.RBoard
 import com.study.kopring.pms.board.vo.type.BoardType
 import org.slf4j.Logger
@@ -51,7 +52,10 @@ class BoardServiceImpl (
             .orElseThrow()
 
         if (result.boardType == BoardType.GITHUB_COMMIT) {
-            githubService.getApiCall(result.refValue!!)
+            val gitResponse = githubService.getApiCall(result.refValue!!,
+                GithubCommitHistory::class.java)
+            return result
+                .toResponse(gitResponse)
         }
 
         return result

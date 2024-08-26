@@ -7,7 +7,8 @@ class RBoard (
     val title: String? = null,
     val content: String? = null,
     val useYn: String? = null,
-    val boardType: BoardType? = null
+    val boardType: BoardType? = null,
+    val githubCommitHistory: GithubCommitHistory? = null
 ) {
 
 }
