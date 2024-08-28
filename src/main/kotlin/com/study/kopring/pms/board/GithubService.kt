@@ -1,5 +1,7 @@
 package com.study.kopring.pms.board
 
+import com.study.kopring.pms.board.vo.response.GithubCommitHistory
+
 interface GithubService {
-    fun <O> getApiCall(uri:String, resClass:Class<O>): O
+    fun getApiCall(uri:String): List<GithubCommitHistory>?
 }

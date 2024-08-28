@@ -59,7 +59,7 @@ class Board (
         )
     }
 
-    fun toResponse(githubCommitHistory: GithubCommitHistory?) :RBoard{
+    fun toResponse(githubCommitHistory: List<GithubCommitHistory>?) :RBoard{
         return RBoard(
             boardSeq = id,
             title = title,

@@ -52,8 +52,7 @@ class BoardServiceImpl (
             .orElseThrow()
 
         if (result.boardType == BoardType.GITHUB_COMMIT) {
-            val gitResponse = githubService.getApiCall(result.refValue!!,
-                GithubCommitHistory::class.java)
+            val gitResponse = githubService.getApiCall(result.refValue!!)
             return result
                 .toResponse(gitResponse)
         }
