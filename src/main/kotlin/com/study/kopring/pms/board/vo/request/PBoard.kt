@@ -25,7 +25,7 @@ class PBoard (
         );
     }
 
-    private fun getRefValue(): String? {
+    fun getRefValue(): String? {
         return when(boardType) {
             BoardType.GITHUB_COMMIT -> githubUri
             else -> null

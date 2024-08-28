@@ -8,6 +8,7 @@ class RBoard (
     val content: String? = null,
     val useYn: String? = null,
     val boardType: BoardType? = null,
+    val refValue: String? = null,
     val githubCommitHistory: GithubCommitHistory? = null
 ) {
 

@@ -38,6 +38,8 @@ class Board (
     fun update(board: PBoard) :Board{
         this.title = board.title
         this.content = board.content
+        this.boardType = board.boardType
+        this.refValue = board.getRefValue()
         return this
     }
 
@@ -52,17 +54,19 @@ class Board (
             title = title,
             content = content,
             useYn = useYn,
-            boardType = boardType
+            boardType = boardType,
+            refValue = refValue
         )
     }
 
-    fun toResponse(githubCommitHistory: GithubCommitHistory) :RBoard{
+    fun toResponse(githubCommitHistory: GithubCommitHistory?) :RBoard{
         return RBoard(
             boardSeq = id,
             title = title,
             content = content,
             useYn = useYn,
             boardType = boardType,
+            refValue = refValue,
             githubCommitHistory = githubCommitHistory
         )
     }
