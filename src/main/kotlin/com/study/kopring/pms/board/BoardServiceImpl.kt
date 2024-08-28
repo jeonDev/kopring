@@ -52,9 +52,12 @@ class BoardServiceImpl (
             .orElseThrow()
 
         if (result.boardType == BoardType.GITHUB_COMMIT) {
-            val gitResponse = githubService.getApiCall(result.refValue!!)
-            return result
-                .toResponse(gitResponse)
+            try {
+                return result
+                    .toResponse(githubService.getApiCall(result.refValue!!))
+            } catch (e: Exception) {
+                logger.error("GitHub 통신 오류", e)
+            }
         }
 
         return result
