@@ -5,5 +5,8 @@ class ServiceException(
     var errorMessage:String = "System Error"
 ): RuntimeException() {
 
-
+    constructor(serviceError: ServiceError) : this() {
+        errorCode = serviceError.getErrorCode()
+        errorMessage = serviceError.getErrorMessage()
+    }
 }
