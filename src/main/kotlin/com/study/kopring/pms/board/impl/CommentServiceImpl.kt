@@ -1,6 +1,7 @@
-package com.study.kopring.pms.board
+package com.study.kopring.pms.board.impl
 
 import com.study.kopring.config.exception.ServiceException
+import com.study.kopring.pms.board.CommentService
 import com.study.kopring.pms.board.entity.Board
 import com.study.kopring.pms.board.entity.Comment
 import com.study.kopring.pms.board.repository.BoardRepository
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
 class CommentServiceImpl (
     val commentRepository: CommentRepository,
     val boardRepository: BoardRepository
-) :CommentService{
+) : CommentService {
 
     @Transactional(readOnly = true)
     override fun get(boardSeq: Long): List<RComment> {

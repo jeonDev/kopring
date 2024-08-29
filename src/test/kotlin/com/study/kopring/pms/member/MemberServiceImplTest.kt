@@ -1,6 +1,7 @@
 package com.study.kopring.pms.member
 
 import com.study.kopring.pms.member.entity.Member
+import com.study.kopring.pms.member.impl.MemberServiceImpl
 import com.study.kopring.pms.member.repository.MemberRepository
 import com.study.kopring.pms.member.vo.request.PMemberAdd
 import com.study.kopring.pms.member.vo.response.RMemberAdd

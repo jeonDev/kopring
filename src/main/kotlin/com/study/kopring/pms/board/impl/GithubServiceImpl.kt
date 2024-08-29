@@ -1,7 +1,8 @@
-package com.study.kopring.pms.board
+package com.study.kopring.pms.board.impl
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.type.TypeFactory
+import com.study.kopring.pms.board.GithubService
 import com.study.kopring.pms.board.vo.response.GithubCommitHistory
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient
 class GithubServiceImpl(
     private val githubWebClient: WebClient,
     private val objectMapper: ObjectMapper
-):GithubService {
+): GithubService {
     private val log = LoggerFactory.getLogger(this::class.java)
 
     override fun getApiCall(uri: String): List<GithubCommitHistory>? {

@@ -1,6 +1,7 @@
-package com.study.kopring.pms.board
+package com.study.kopring.pms.board.impl
 
 import com.study.kopring.common.vo.PageResponse
+import com.study.kopring.pms.board.TeamService
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PTeam
 import com.study.kopring.pms.board.vo.response.RTeam

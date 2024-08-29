@@ -1,13 +1,14 @@
-package com.study.kopring.pms.board
+package com.study.kopring.pms.board.impl
 
 import com.study.kopring.common.vo.PageResponse
 import com.study.kopring.config.exception.ServiceException
+import com.study.kopring.pms.board.BoardService
+import com.study.kopring.pms.board.GithubService
 import com.study.kopring.pms.board.entity.Board
 import com.study.kopring.pms.board.entity.Team
 import com.study.kopring.pms.board.repository.BoardRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PBoard
-import com.study.kopring.pms.board.vo.response.GithubCommitHistory
 import com.study.kopring.pms.board.vo.response.RBoard
 import com.study.kopring.pms.board.vo.type.BoardType
 import org.slf4j.Logger

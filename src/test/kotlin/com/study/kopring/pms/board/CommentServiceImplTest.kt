@@ -2,6 +2,7 @@ package com.study.kopring.pms.board
 
 import com.study.kopring.pms.board.entity.Board
 import com.study.kopring.pms.board.entity.Comment
+import com.study.kopring.pms.board.impl.CommentServiceImpl
 import com.study.kopring.pms.board.repository.BoardRepository
 import com.study.kopring.pms.board.repository.CommentRepository
 import com.study.kopring.pms.board.vo.request.PComment

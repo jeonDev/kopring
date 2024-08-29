@@ -1,6 +1,7 @@
 package com.study.kopring.pms.board
 
 import com.study.kopring.pms.board.entity.Team
+import com.study.kopring.pms.board.impl.TeamServiceImpl
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PTeam
 import org.junit.jupiter.api.Test

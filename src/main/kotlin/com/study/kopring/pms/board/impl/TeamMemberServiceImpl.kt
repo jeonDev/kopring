@@ -1,7 +1,8 @@
-package com.study.kopring.pms.board
+package com.study.kopring.pms.board.impl
 
 import com.study.kopring.common.vo.PageResponse
 import com.study.kopring.config.exception.ServiceException
+import com.study.kopring.pms.board.TeamMemberService
 import com.study.kopring.pms.board.repository.TeamMemberRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PTeamMember
@@ -16,7 +17,7 @@ class TeamMemberServiceImpl(
     private val teamMemberRepository: TeamMemberRepository,
     private val teamRepository: TeamRepository,
     private val memberRepository: MemberRepository
-):TeamMemberService {
+): TeamMemberService {
 
     @Transactional
     override fun add(pTeamMember: PTeamMember) {

@@ -1,9 +1,9 @@
 package com.study.kopring.pms.board
 
 import com.study.kopring.config.exception.ServiceException
-import com.study.kopring.pms.board.entity.Board
 import com.study.kopring.pms.board.entity.Team
 import com.study.kopring.pms.board.entity.TeamMember
+import com.study.kopring.pms.board.impl.TeamMemberServiceImpl
 import com.study.kopring.pms.board.repository.TeamMemberRepository
 import com.study.kopring.pms.board.repository.TeamRepository
 import com.study.kopring.pms.board.vo.request.PTeamMember
